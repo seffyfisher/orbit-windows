@@ -1,0 +1,204 @@
+{
+  "application": "Orbit",
+  "version": "0.1.0",
+  "binary": {
+    "format": "Windows x64 PE32+ GUI",
+    "bytes": 615936,
+    "sha256": "841d9d847c7818e75d7e48af474f88cb11b5214d8e989d39de5af60f2dd7cf8c",
+    "imports": [
+      "advapi32.dll",
+      "api-ms-win-core-synch-l1-2-0.dll",
+      "api-ms-win-crt-environment-l1-1-0.dll",
+      "api-ms-win-crt-heap-l1-1-0.dll",
+      "api-ms-win-crt-math-l1-1-0.dll",
+      "api-ms-win-crt-runtime-l1-1-0.dll",
+      "api-ms-win-crt-stdio-l1-1-0.dll",
+      "api-ms-win-crt-string-l1-1-0.dll",
+      "api-ms-win-crt-time-l1-1-0.dll",
+      "api-ms-win-shcore-scaling-l1-1-1.dll",
+      "combase.dll",
+      "comctl32.dll",
+      "d2d1.dll",
+      "dwmapi.dll",
+      "dwrite.dll",
+      "gdi32.dll",
+      "KERNEL32.dll",
+      "ntdll.dll",
+      "ole32.dll",
+      "oleaut32.dll",
+      "shell32.dll",
+      "user32.dll",
+      "wtsapi32.dll"
+    ],
+    "manifest": {
+      "dpi": "PerMonitorV2",
+      "execution_level": "asInvoker",
+      "common_controls": 6
+    },
+    "embedded_icon_images": 7,
+    "version_metadata": true,
+    "aslr": true,
+    "dep": true,
+    "authenticode_signed": false,
+    "inspection_scope": "Static PE structure, resources and imports; does not execute or validate Windows runtime behavior."
+  },
+  "windows_runtime_acceptance": "pending \u2014 not run on Windows by the macOS builder",
+  "verification": {
+    "date": "2026-10-16",
+    "host": "Darwin arm64",
+    "application": "Orbit",
+    "target": "x86_64-pc-windows-gnullvm",
+    "revision": "Public Orbit project with compact 13px secondary label and refreshed media",
+    "application_payload_sha256": "841d9d847c7818e75d7e48af474f88cb11b5214d8e989d39de5af60f2dd7cf8c",
+    "application_checks_baseline": {
+      "date": "2026-10-16",
+      "host": "Darwin arm64",
+      "compiler": "rustc 1.93.0",
+      "target": "x86_64-pc-windows-gnullvm",
+      "cross_linker": "Zig 0.13.0",
+      "compiled_source_sha256": "fb3a5ea313e8850a18c422fe24fd23940d4bf8636193bcab0476774ce270be53",
+      "checks": {
+        "core_unit_tests": {
+          "passed": 13,
+          "failed": 0,
+          "command": "cargo test --offline --locked --lib"
+        },
+        "formatting": "cargo fmt --all --check passed",
+        "windows_static_analysis": "cargo clippy --offline --locked --target x86_64-pc-windows-gnullvm --all-targets -- -D warnings passed",
+        "release_build": "cargo build --offline --locked --release --target x86_64-pc-windows-gnullvm with the Zig cross-linker passed",
+        "gift_gesture_tests": {
+          "passed": 2,
+          "failed": 0
+        },
+        "gift_windows_static_analysis": "cargo clippy --offline --locked --manifest-path gift-installer/Cargo.toml --target x86_64-pc-windows-gnullvm --all-targets -- -D warnings passed",
+        "gift_release_build": "Native Windows x64 release cross-build passed",
+        "embedded_gift_artwork": {
+          "exact_bytes": "passed",
+          "sha256": {
+            "dedication.png": "3a3ac9004e291df1a6677315a96719c51f7555f56ab770c845127caf1072e248",
+            "paper-flap.png": "da0462116090b324b6b791739102688f3d970499a42a61a6069ac500ce0ed6d5",
+            "product-box.png": "e4707651ea3f61e821b22907d17ff9f2c2d48317535fa87729ac65922d80d991",
+            "wrapped-parcel.png": "9dd918cae4987e956bac60c0a4ddefebe2f6fe46c055a49311225ecf67eb17cc"
+          }
+        },
+        "browser_preview": {
+          "status": "passed",
+          "scope": "Browser simulation only; not Windows execution",
+          "viewports": [
+            "319x1391",
+            "1024x900"
+          ],
+          "observed": [
+            "initial wrapped artwork",
+            "button reveal",
+            "partial drag without advancing",
+            "resuming a drag to reveal",
+            "options default unchecked",
+            "option selection",
+            "simulated installation and final download link",
+            "rewrap resets options",
+            "Enter reveals without dragging",
+            "handwritten dedication and spacing correction visually checked"
+          ],
+          "screenshots": [
+            "Orbit-Gift-Preview.jpg",
+            "Orbit-Gift-Tear.jpg"
+          ]
+        }
+      },
+      "not_run": [
+        "Windows executable launch",
+        "Windows visual QA",
+        "Windows install/uninstall",
+        "physical keyboard and pointer acceptance",
+        "mixed-DPI display acceptance",
+        "latency, CPU and memory measurements",
+        "Gift installation and launch on Windows",
+        "Desktop and sign-in option acceptance",
+        "Gift Narrator and high-DPI behavior on Windows"
+      ],
+      "compiled_source_hash_scope": "App Cargo files, build.rs, src/**/*.rs, assets/* and application manifest; UTF-8 relative path plus NUL plus file bytes in listed order."
+    },
+    "current_revision_scope": "Gift wrapped/opening secondary label uses a separate 13px regular font; primary actions retain their original font. Native and preview labels updated, gift rebuilt and static checks rerun. App payload remains unchanged. Full current source, artwork and documentation packaged; Windows runtime acceptance remains pending.",
+    "current_checks": {
+      "formatting": "passed",
+      "windows_target_clippy": "passed with -D warnings",
+      "gift_release_cross_build": "passed",
+      "payload_embedding": "exact original app bytes occur once",
+      "artwork_sha256": {
+        "dedication.png": "3a3ac9004e291df1a6677315a96719c51f7555f56ab770c845127caf1072e248",
+        "paper-flap.png": "4969ed953ff035e11b984763e0784883f2a134f87e304712ad85cf1513e1b035",
+        "product-box.png": "e4707651ea3f61e821b22907d17ff9f2c2d48317535fa87729ac65922d80d991",
+        "wrapped-parcel.png": "fb13b0283bde60951bf561d7bbbc4a6ad088ec13412354d85f227da936f594f5"
+      },
+      "artwork_embedding": "all four PNG assets occur once",
+      "no_cassette_brand_name_in_installer": "passed",
+      "parcel_size": "420x210 logical pixels; proportionally scaled details",
+      "browser_preview": {
+        "status": "passed",
+        "scope": "Browser simulation only",
+        "viewport": "1024x800",
+        "observed": [
+          "Windows application collage on paper with corresponding curled strip",
+          "partial tear remains wrapped and resumed drag completes opening",
+          "clean original Orbit box and corrected handwritten dedication",
+          "options start unchecked; desktop checkbox can be checked",
+          "installation-simulation disabled action",
+          "ready screen and correct Orbit download filename"
+        ],
+        "screenshots": [
+          "01-wrapped.jpg",
+          "02-opening.jpg",
+          "03-unwrapped.jpg",
+          "04-options.jpg",
+          "05-installing-preview.jpg",
+          "06-ready.jpg"
+        ]
+      },
+      "video": {
+        "scope": "Browser simulation on macOS, not Windows installation",
+        "source_frames": 98,
+        "capture_duration_ms": 17496,
+        "capture": "Sequential live browser screenshots with original timestamps",
+        "end_frame_hold_seconds": 2.2,
+        "ffmpeg_decode": "passed",
+        "timestamp_fidelity": "duration matches capture timestamps within 0.15 seconds",
+        "video": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_name": "h264",
+              "width": 1024,
+              "height": 800,
+              "r_frame_rate": "24/1"
+            }
+          ],
+          "format": {
+            "duration": "19.541667",
+            "size": "193107"
+          }
+        }
+      },
+      "button_label": {
+        "text": "\u05d0\u05d5 \u05d0\u05e4\u05e9\u05e8 \u05d2\u05dd \u05dc\u05d4\u05ea\u05e7\u05d9\u05df \u05d1\u05dc\u05d9 \u05dc\u05d4\u05e8\u05d5\u05e1 \u05d0\u05ea \u05e2\u05d8\u05d9\u05e4\u05ea \u05d4\u05de\u05ea\u05e0\u05d4",
+        "font_px": 13,
+        "weight": 400,
+        "primary_action_fonts": "unchanged",
+        "native_build": "passed",
+        "browser_computed_style": "13px, 400; visually verified"
+      }
+    },
+    "not_run": [
+      "Windows executable launch",
+      "Windows visual QA",
+      "Windows install/uninstall",
+      "physical keyboard and pointer acceptance",
+      "mixed-DPI display acceptance",
+      "latency, CPU and memory measurements",
+      "Gift installation and launch on Windows",
+      "Desktop and sign-in option acceptance",
+      "Gift Narrator and high-DPI behavior on Windows"
+    ]
+  }
+}

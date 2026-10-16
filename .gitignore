@@ -1,0 +1,9 @@
+/target/
+/gift-installer/target/
+/dist/
+**/__pycache__/
+*.pyc
+*.log
+.DS_Store
+.env*
+**/.env*

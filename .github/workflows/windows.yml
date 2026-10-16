@@ -1,0 +1,47 @@
+name: Windows build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust 1.93
+        shell: pwsh
+        run: |
+          rustup toolchain install 1.93.0 --profile minimal --component rustfmt --component clippy
+          if ($LASTEXITCODE -ne 0) { throw 'Rust installation failed' }
+          rustup default 1.93.0
+      - name: Check and build application
+        shell: pwsh
+        run: ./scripts/check.ps1
+      - name: Build and check gift installer
+        shell: pwsh
+        run: |
+          ./scripts/build-gift.ps1
+          $env:ORBIT_PAYLOAD = (Resolve-Path 'target/release/orbit.exe').Path
+          cargo fmt --manifest-path gift-installer/Cargo.toml --all --check
+          if ($LASTEXITCODE -ne 0) { throw 'Gift formatting failed' }
+          cargo clippy --manifest-path gift-installer/Cargo.toml --locked --all-targets -- -D warnings
+          if ($LASTEXITCODE -ne 0) { throw 'Gift static checks failed' }
+      - name: Inspect Windows executable resources
+        shell: pwsh
+        run: |
+          python scripts/verify_pe.py target/release/orbit.exe
+          if ($LASTEXITCODE -ne 0) { throw 'Application PE inspection failed' }
+          python scripts/verify_pe.py dist/Orbit-Gift-0.1.0-x64.exe
+          if ($LASTEXITCODE -ne 0) { throw 'Gift PE inspection failed' }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orbit-windows-x64
+          path: |
+            target/release/orbit.exe
+            dist/Orbit-Gift-0.1.0-x64.exe
+          if-no-files-found: error
